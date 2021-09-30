@@ -11,6 +11,10 @@ self.addEventListener('install', (event) => {
   );
 });
 
+self.addEventListener('activate', (event) => {
+  console.log('V1 now ready to handle fetches!');
+});
+
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((resp) => {
@@ -18,8 +22,8 @@ self.addEventListener('fetch', (event) => {
       return (
         resp ||
         fetch(event.request).then((response) => {
+          console.log('fetch...');
           return caches.open('v1').then((cache) => {
-            console.log('fetch...');
             cache.put(event.request, response.clone());
             return response;
           });
