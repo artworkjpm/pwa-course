@@ -5,6 +5,11 @@ import { router } from './router.js';
 const app = express();
 const port = 3000;
 
+/* app.get('/js/service-worker.js', (req, res, next) => {
+  res.set('Service-Worker-Allowed', '/');
+  next();
+}); */
+
 app.get('/images/:image.jpg', (req, res, next) => {
   // Simulate slow server response
   setTimeout(
