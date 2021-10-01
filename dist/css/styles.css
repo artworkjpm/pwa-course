@@ -43,6 +43,7 @@ p {
   margin: 0;
   appearance: none;
   border: var(--base-border-width) solid transparent;
+  cursor: pointer;
 }
 
 .button:hover,
@@ -68,11 +69,12 @@ p {
 
 @media (min-width: 720px) {
   .characters-grid {
-    display: grid;
     grid-template-columns: 30rem 1fr;
+    display: grid;
   }
 }
 
 .main-list__li {
   margin-bottom: var(--spacer);
+  cursor: pointer;
 }

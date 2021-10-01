@@ -10,8 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const collection = await fetchCollection(
       event.target.getAttribute(`${dataAttributeLoad}`)
     );
-    renderCollection(event.target, getCollectionMarkup(collection));
-    removeElement(event.target);
+
+    if (document.querySelector('.characters')) {
+      removeElement();
+    } else {
+      renderCollection(event.target, getCollectionMarkup(collection));
+    }
   }
 
   async function fetchCollection(collectionName) {
@@ -24,15 +28,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function getCollectionMarkup(collection) {
     return `
+    <div class="characters">
       <h2>${collection.name}</h2>
       <div class="characters-grid">
-        <img class="image" src="${collection.imageUrl}" alt="${collection.imageAltText}">
+        <img class="image" src="${collection.imageUrl}" alt="${
+      collection.imageAltText
+    }">
         <ul>
           ${collection.characters
             .map((character) => `<li><p>${character}</p></li>`)
             .join('')}
         </ul>
       </div>
+    </div>
       `;
   }
 
@@ -40,8 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     element.parentElement.insertAdjacentHTML('afterend', markup);
   }
 
-  function removeElement(element) {
-    element.removeEventListener('click', clickHandler);
-    element.parentElement.parentElement.removeChild(element.parentElement);
+  function removeElement() {
+    document.querySelector('.characters').remove();
   }
 });

@@ -15,7 +15,7 @@ self.addEventListener('activate', (event) => {
   console.log('V1 now ready to handle fetches!');
 });
 
-self.addEventListener('fetch', (event) => {
+/* self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((resp) => {
       console.log('caching api calls...');
@@ -32,3 +32,4 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
+ */
