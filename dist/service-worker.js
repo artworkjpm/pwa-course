@@ -1,10 +1,11 @@
-const CACHE_NAME = 'v1';
+const CACHE_NAME = 'v2';
 
 self.addEventListener('install', (event) => {
   console.log('installing....');
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll([
+        '/css/styles.css',
         '/fonts/redemption.woff',
         '/images/main-teaser.jpg',
       ]);
