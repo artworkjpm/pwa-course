@@ -46,4 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
     element.removeEventListener('click', clickHandler);
     element.parentElement.parentElement.removeChild(element.parentElement);
   }
+
+  document.addEventListener(
+    'click',
+    function (event) {
+      if (!event.target.matches('#subscribe')) return;
+      event.preventDefault();
+      console.log('subscribe');
+    },
+    false
+  );
 });
