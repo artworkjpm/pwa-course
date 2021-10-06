@@ -1,8 +1,8 @@
 import express from "express";
 import { router } from "./router.js";
 
-const webpush = require("web-push");
-const path = require("path");
+import webpush from "web-push";
+import path from "path";
 const app = express();
 const port = 3000;
 
