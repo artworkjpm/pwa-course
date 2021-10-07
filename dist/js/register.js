@@ -24,7 +24,7 @@ async function send() {
 	console.log("sending push...");
 	await fetch("/subscribe", {
 		method: "POST",
-		body: JSON.stringify,
+		body: JSON.stringify(subscription),
 		headers: {
 			"content-type": "application/json",
 		},
