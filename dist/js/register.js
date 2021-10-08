@@ -17,14 +17,6 @@ if ("serviceWorker" in navigator) {
 	console.log("Service worker is not supported in your browser");
 }
 
-// //Register push, send push
-// async function send() {
-// 	const register = await navigator.serviceWorker.register("service-worker.js");
-// 	/* navigator.serviceWorker.register('/js/service-worker.js', { scope: '../' }); */
-// 	console.log("pwa is working...");
-// 	return register;
-// }
-
 async function push(reg) {
 	const subscription = await reg.pushManager.subscribe({
 		userVisibleOnly: true,
