@@ -39,7 +39,7 @@ self.addEventListener("fetch", (event) => {
 });
 
 self.addEventListener("push", (e) => {
-	const data = e.data;
+	const data = e.data.json();
 	console.log("push received...");
 	console.log(data);
 	self.registration.showNotification(data.title, {

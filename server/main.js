@@ -4,7 +4,8 @@ import { router } from "./router.js";
 const app = express();
 const port = 3000;
 
-import webpush from "web-push";
+const publicVapidKey = "BCP-MxswepN7VilAen5Qtt6EbT29bOJmt0nfdW06j071j9tSQcYCHFERg_xqKwRlP20jOmmC8huFZwq3UoHosEg";
+const privateVapidKey = "aW2gi8M4xZVclqAuHQOejvLCNbn1ziOU7IvXw5_bcMA";
 
 const publicKey = "BCP-MxswepN7VilAen5Qtt6EbT29bOJmt0nfdW06j071j9tSQcYCHFERg_xqKwRlP20jOmmC8huFZwq3UoHosEg";
 
@@ -23,7 +24,7 @@ app.post("/subscribe", (req, res) => {
 	// Create payload
 	const payload = JSON.stringify({ title: "Push Test" });
 
-	console.log(subscription);
+	console.log(subscription, payload);
 	// Pass object into sendNotification
 	webpush.sendNotification(subscription, payload).catch((err) => console.error(err));
 });
