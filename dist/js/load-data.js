@@ -47,6 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (!event.target.matches("#subscribe")) return;
 			event.preventDefault();
 			console.log("subscribe");
+			console.log("push sent from click...");
+			console.log(swRegistration);
+			const title = "From click";
+			swRegistration.showNotification(title, {
+				body: "from click",
+				icon: "/images/fav/favicon-32x32.png",
+			});
 		},
 		false
 	);
