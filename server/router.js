@@ -14,8 +14,6 @@ router.get("/:collection", async (req, res, next) => {
 	setTimeout(() => res.json(JSON.parse(data)), 1500);
 });
 
-router.get("/subscribe");
-
 //subscribe route
 // router.post("/subscribe", (req, res) => {
 // 	//Get push subscription object
