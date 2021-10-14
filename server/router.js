@@ -1,12 +1,12 @@
 import express from "express";
 import fs from "fs";
-// import webpush from "web-push";
+import webpush from "web-push";
 
-// const vapidKeys = webpush.generateVAPIDKeys();
-
-// webpush.setVapidDetails("mailto:test@test.com", vapidKeys.publicKey, vapidKeys.privateKey);
-
+const pushTokens = new Map();
 const router = express.Router();
+const publicKey = "BCP-MxswepN7VilAen5Qtt6EbT29bOJmt0nfdW06j071j9tSQcYCHFERg_xqKwRlP20jOmmC8huFZwq3UoHosEg";
+const privateKey = "aW2gi8M4xZVclqAuHQOejvLCNbn1ziOU7IvXw5_bcMA";
+webpush.setVapidDetails("mailto:test@test.com", publicKey, privateKey);
 
 router.get("/:collection", async (req, res, next) => {
 	const data = await fs.promises.readFile(`${process.cwd()}/server/data/${req.params.collection}.json`);
@@ -14,16 +14,23 @@ router.get("/:collection", async (req, res, next) => {
 	setTimeout(() => res.json(JSON.parse(data)), 1500);
 });
 
-//subscribe route
-// router.post("/subscribe", (req, res) => {
-// 	//Get push subscription object
-// 	const subscription = req.body;
-// 	res.status(201).json({});
-// 	//create payload
-// 	const payload = JSON.stringify({ title: "Push text" });
-// 	//Pass object to send notification
-// 	console.log("app.post / subscribe");
-// 	webpush.sendNotification(subscription, payload).catch((err) => console.log(err));
-// });
+router.post("/subscribe", (req, res) => {
+	const payload = JSON.stringify({
+		title: "PWA push notifications are active",
+	});
+	const subscription = req.body;
+	if (!pushTokens.has(subscription.keys.auth)) {
+		pushTokens.set(subscription.keys.auth, subscription);
+	}
+	webpush.sendNotification(subscription, payload);
+	res.status(201).json({});
+});
+
+router.get("/notify", (req, res, next) => {
+	for (let subscription of pushTokens.values()) {
+		webpush.sendNotification(subscription, JSON.stringify({ title: `Greetings from John` }));
+	}
+	res.sendStatus(200);
+});
 
 export { router };
