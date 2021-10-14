@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (!event.target.matches("#subscribe")) return;
 			event.preventDefault();
 			console.log("subscribe me...");
-			fetch("/notify");
+			fetch("/api/notify");
 		},
 		false
 	);
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				applicationServerKey: publicKey,
 			});
 
-			await fetch("/subscribe", {
+			await fetch("/api/subscribe", {
 				method: "POST",
 				body: JSON.stringify(subscription),
 				headers: {

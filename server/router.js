@@ -19,6 +19,7 @@ router.post("/subscribe", (req, res) => {
 		title: "PWA push notifications are active",
 	});
 	const subscription = req.body;
+	console.log(subscription);
 	if (!pushTokens.has(subscription.keys.auth)) {
 		pushTokens.set(subscription.keys.auth, subscription);
 	}
