@@ -14,7 +14,7 @@ router.get("/:collection", async (req, res, next) => {
 	setTimeout(() => res.json(JSON.parse(data)), 1500);
 });
 
-router.post("/subscribe", (req, res) => {
+router.post("/send-notification", (req, res) => {
 	const payload = JSON.stringify({
 		title: "PWA push notifications are active",
 	});
@@ -27,7 +27,7 @@ router.post("/subscribe", (req, res) => {
 	res.status(201).json({});
 });
 
-router.get("/notify", (req, res, next) => {
+router.get("/turn-on-notifications", (req, res, next) => {
 	for (let subscription of pushTokens.values()) {
 		webpush.sendNotification(subscription, JSON.stringify({ title: `Greetings from John` }));
 	}
