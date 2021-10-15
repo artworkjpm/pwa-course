@@ -13,3 +13,12 @@ BCP-MxswepN7VilAen5Qtt6EbT29bOJmt0nfdW06j071j9tSQcYCHFERg_xqKwRlP20jOmmC8huFZwq3
 
 Private Key:
 aW2gi8M4xZVclqAuHQOejvLCNbn1ziOU7IvXw5_bcMA
+
+Order of functions:
+
+main.js (app.use("/api", router);) >>>
+register.js (await fetch("/api/send-notification") >>>
+router.js (outer.post("/send-notification", (req, res)) >>>
+service-worker.js(self.addEventListener("push")
+
+How to turn off subscribe permission?
