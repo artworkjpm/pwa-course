@@ -18,7 +18,7 @@ router.get("/:collection", async (req, res, next) => {
 router.get("/turn-on-notifications", (req, res, next) => {
 	console.log("router turn-on-notifications....");
 	for (let subscription of pushTokens.values()) {
-		webpush.sendNotification(subscription, JSON.stringify({ title: `Greetings from John` }));
+		webpush.sendNotification(subscription, JSON.stringify({ title: `Turn on notifications` }));
 	}
 	res.sendStatus(200);
 });
